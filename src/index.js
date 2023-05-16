@@ -1,9 +1,10 @@
-import express from 'express'
-import { createServer } from 'http'
-import { Server } from 'socket.io'
-import { spawn } from 'child_process'
-import fs from 'fs'
-import readline from 'readline'
+const express = require('express')
+const { createServer } = require('http')
+const { Server } = require('socket.io')
+const { spawn } = require('child_process')
+const fs = require('fs')
+const readline = require('readline')
+const path = require('path')
 
 const app = express()
 const httpServer = createServer(app)
@@ -14,6 +15,8 @@ const io = new Server(httpServer, {
     methods: ['GET', 'POST'],
   },
 })
+
+const rootDir = path.resolve(__dirname)
 
 io.on('connection', (socket) => {
   // Specify the file path
@@ -32,7 +35,7 @@ io.on('connection', (socket) => {
   // })
 
   // Specify the file path
-  const filePath = '/home/justone/Desktop/tremor-detector/backend/src/Data_test.csv'
+  const filePath = `${rootDir}/Data_test.csv`
 
   // Create a readable stream from the file
   const stream = fs.createReadStream(filePath)

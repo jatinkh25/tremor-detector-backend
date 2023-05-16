@@ -3,6 +3,8 @@ import pandas
 import pickle
 import csv
 import sklearn
+import os
+
 
 '''Open text file'''
 f = open("/home/justone/Desktop/tremor-detector/backend/src/test.txt", "r")
